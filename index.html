@@ -12,7 +12,6 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-KD7B66SJ');</script>
     <!-- End Google Tag Manager -->
-
 </head>
 <body>
 
@@ -26,11 +25,40 @@
     <h1>GTM Test Page</h1>
     <p>Check Google Tag Manager in Preview Mode.</p>
 
-    <button onclick="dataLayer.push({'event': 'button_click', 'button_name': 'Test Button'})">
-        Click Me (Trigger GTM Event)
-    </button>
+    <!-- Confirm Button -->
+    <button id="confirmBtn">Confirm</button>
+
+    <!-- Form (Initially Hidden) -->
+    <form id="testForm" style="display:none; margin-top: 20px;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
+        // Show form when Confirm button is clicked
+        document.getElementById("confirmBtn").addEventListener("click", function() {
+            document.getElementById("testForm").style.display = "block";
+            window.dataLayer.push({'event': 'confirm_button_clicked'});
+        });
+
+        // Push event to dataLayer on form submission
+        document.getElementById("testForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            window.dataLayer.push({
+                'event': 'form_submitted',
+                'form_data': {
+                    'name': document.getElementById("name").value,
+                    'email': document.getElementById("email").value
+                }
+            });
+            alert("Form Submitted! Check GTM Data Layer.");
+        });
+
         // Verify GTM by sending a page_view event
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
@@ -38,6 +66,5 @@
             'page_title': document.title
         });
     </script>
-
 </body>
 </html>

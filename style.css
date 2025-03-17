@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: block; /* Ensures normal stacking of elements */
+}
+
+.songs-wrapper {
+    display: flex; /* Only makes the song containers side by side */
+    margin-top: 20px; /* Add space above */
+}
+
+.song-container {
+    flex: 1; /* Each song container takes equal space */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.vertical-line {
+    border-left: 1px solid #ccc; /* Vertical separator */
+}

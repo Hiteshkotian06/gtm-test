@@ -164,6 +164,27 @@ Take me back to the night we met
             'event': 'page_view',
             'page_title': document.title
         });
+
+        // Send page view event
+    window.dataLayer.push({
+        'event': 'page_view',
+        'page_title': document.title
+    });
+
+    // Wait until the page is loaded to attach event listeners
+    document.addEventListener("DOMContentLoaded", function() {
+        // Track Shawn Mendes Song Click
+        document.querySelector('a[href="https://open.spotify.com/track/7JJmb5XwzOO8jgpou264Ml#login"]').addEventListener("click", function(event) {
+            window.dataLayer.push({ event: "spotify_shawn_mendes_click" });
+        });
+
+        // Track Lord Huron Song Click
+        document.querySelector('a[href="https://open.spotify.com/track/3hRV0jL3vUpRrcy398teAU#login"]').addEventListener("click", function(event) {
+            window.dataLayer.push({ event: "spotify_lord_huron_click" });
+        });
+    });
     </script>
+
+    
 </body>
 </html>

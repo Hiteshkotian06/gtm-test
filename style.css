@@ -39,13 +39,15 @@ body {
             background-color: white;
             padding: 20px;
             border: 1px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 400px;
         }
 
 .popup label, .popup input, .popup button {
             display: block;
             margin-bottom: 10px;
+    font-size: 18px;
 }
 .green-button:hover {
     background-color: darkgreen; /* Optional: Darker green on hover */

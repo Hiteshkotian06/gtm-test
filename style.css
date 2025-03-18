@@ -26,7 +26,8 @@ body {
     border: none; /* Remove default button border */
     border-radius: 5px; /* Optional: Rounded corners */
     cursor: pointer; /* Change cursor on hover */
-    font-size: 16px; /* Optional: Adjust font size */
+    font-size: 16px;
+    margin-right: 10px;/* Optional: Adjust font size */
   }
 
 .popup {

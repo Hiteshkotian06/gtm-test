@@ -142,8 +142,30 @@ Take me back to the night we met
         </pre>
       </div>
     </div>
-      
+
+    <div class="popup" id="detailsPopup">
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+
+        <button onclick="closePopup()">Submit</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
     <script>
+        function showPopup() {
+            document.getElementById("detailsPopup").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("detailsPopup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+      
         // Show form when Confirm button is clicked
         document.getElementById("confirmBtn").addEventListener("click", function() {
             document.getElementById("testForm").style.display = "block";

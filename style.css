@@ -42,7 +42,6 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   width: 400px;
-  height: 200px;
   max-width: 90%;
 }
 
@@ -51,7 +50,7 @@ body {
 .popup button {
   display: block;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 20px;
 }
 .green-button:hover {
   background-color: darkgreen; /* Optional: Darker green on hover */

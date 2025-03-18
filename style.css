@@ -46,7 +46,7 @@ body {
 .popup label, .popup input, .popup button {
             display: block;
             margin-bottom: 10px;
-
+}
 .green-button:hover {
     background-color: darkgreen; /* Optional: Darker green on hover */
 }

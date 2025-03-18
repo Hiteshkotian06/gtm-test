@@ -18,3 +18,17 @@ body {
 .vertical-line {
     border-left: 1px solid #ccc; /* Vertical separator */
 }
+
+.green-button {
+    background-color: green;
+    color: white; /* Optional: White text for better contrast */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none; /* Remove default button border */
+    border-radius: 5px; /* Optional: Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; /* Optional: Adjust font size */
+  }
+
+  .green-button:hover {
+    background-color: darkgreen; /* Optional: Darker green on hover */
+  }

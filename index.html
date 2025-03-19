@@ -205,6 +205,7 @@ function getCookie(name) {
                 <button onclick="closePopup()" class="Click_me_submit">Submit</button>
             `;
 
+            // ABTesting Tracking
             if (variation === '1') {
                 document.getElementById("acceptTerms").addEventListener("change", function() {
                     if (localStorage.getItem('TermAcceptbuttonTracked') !== '1') {
@@ -218,11 +219,6 @@ function getCookie(name) {
             }
         }
 
-        // ABTesting Tracking
-        window.dataLayer.push({
-        'event': 'WeAcceptTesting', // Name your custom event
-        'WeAcceptTesting': variation // Add the variation as a key-value pair
-});
         
         // Confirm Button Click Tracking
         document.getElementById("confirmBtn").addEventListener("click", function() {

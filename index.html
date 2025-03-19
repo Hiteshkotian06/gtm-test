@@ -226,9 +226,13 @@ function getCookie(name) {
 
         // Form Submission Tracking
         document.getElementById("testForm").addEventListener("submit", function(event) {
+            window.dataLayer.push({
+                'event':'Confirm-Submit'
+            });
+            
             event.preventDefault();
             window.dataLayer.push({
-                'event': 'form_submitted',
+                'event': 'Submission-Popup',
                 'form_data': {
                     'name': document.getElementById("name").value,
                     'email': document.getElementById("email").value

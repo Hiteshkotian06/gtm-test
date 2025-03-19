@@ -188,24 +188,38 @@ function getCookie(name) {
             document.getElementById("overlay").style.display = "none";
         }
 
-        function renderPopup() {
-            let popup = document.getElementById('detailsPopup');
-            popup.style.display = 'block';
-            popup.innerHTML = `
-                <label for="college">College Name:</label>
-                <input type="text" id="college" name="college">
-                <label for="qualification">Highest Qualification:</label>
-                <input type="text" id="qualification" name="qualification">
-                ${variation === '1' ? `
-                    <div class="accept-terms flex-row">
-                        <input type="checkbox" id="acceptTerms" name="acceptTerms">
-                        <label for="acceptTerms">We accept</label>
-                    </div>
-                ` : ''}
-                <button onclick="closePopup()" class="Click_me_submit">Submit</button>
-            `;
+            function renderPopup() {
+    let popup = document.getElementById('detailsPopup');
+    popup.style.display = 'block';
+    popup.innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        ${variation === '1' ? `
+            <div class="accept-terms flex-row">
+                <input type="checkbox" id="acceptTerms" name="acceptTerms">
+                <label for="acceptTerms">We accept</label>
+            </div>
+        ` : ''}
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+         // ABTesting Tracking
+    if (variation === '1') {
+        const acceptTermsCheckbox = document.getElementById('acceptTerms');
 
-            // ABTesting Tracking
+        if (acceptTermsCheckbox) {
+            acceptTermsCheckbox.addEventListener("change", function() {
+                window.dataLayer.push({
+                    'event': 'TermAccept_Checked',
+                    'checkbox_checked': this.checked ? 1 : 0
+                });
+            });
+        }
+    }
+}
+
+   
 
 
 

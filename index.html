@@ -272,74 +272,50 @@ Take me back to the night we met
 });
 
         
-        // Example A/B testing logic
-function assignVariation() {
-    if (Math.random() < 0.5) {
-        return 'variationA'; // Original pop-up
-    } else {
-        return 'variationB'; // Pop-up with checkbox
-    }
-}
+        // A/B testing logic
+        var variation = assignVariation(); // Store the variation globally
 
-var variation = assignVariation();
+        function assignVariation() {
+            if (Math.random() < 0.5) {
+                return 'variationA';
+            } else {
+                return 'variationB';
+            }
+        }
 
-if (variation === 'variationB') {
-    // Show pop-up with checkbox
-    document.getElementById('detailsPopup').innerHTML = `
-        <label for="college">College Name:</label>
-        <input type="text" id="college" name="college">
-        <label for="qualification">Highest Qualification:</label>
-        <input type="text" id="qualification" name="qualification">
-        <div class="accept-terms">
-            <input type="checkbox" id="acceptTerms" name="acceptTerms">
-            <label for="acceptTerms">We accept</label>
-        </div>
-        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
-    `;
-} else {
-    // Show original pop-up
-    document.getElementById('detailsPopup').innerHTML = `
-        <label for="college">College Name:</label>
-        <input type="text" id="college" name="college">
-        <label for="qualification">Highest Qualification:</label>
-        <input type="text" id="qualification" name="qualification">
-        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
-    `;
-}
-        // Example A/B testing logic
-function assignVariation() {
-    if (Math.random() < 0.5) {
-        return 'variationA'; // Original pop-up
-    } else {
-        return 'variationB'; // Pop-up with checkbox
-    }
-}
+        function setVariation(newVariation) { // Function to change variation
+            variation = newVariation;
+            renderPopup(); // Re-render the popup with the new variation
+        }
 
-var variation = assignVariation();
+        function renderPopup() {
+            var detailsPopup = document.getElementById('detailsPopup');
+            detailsPopup.style.display = 'block'; // Ensure it's visible before setting innerHTML
 
-if (variation === 'variationB') {
-    // Show pop-up with checkbox
-    document.getElementById('detailsPopup').innerHTML = `
-        <label for="college">College Name:</label>
-        <input type="text" id="college" name="college">
-        <label for="qualification">Highest Qualification:</label>
-        <input type="text" id="qualification" name="qualification">
-        <div class="accept-terms">
-            <input type="checkbox" id="acceptTerms" name="acceptTerms">
-            <label for="acceptTerms">We accept</label>
-        </div>
-        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
-    `;
-} else {
-    // Show original pop-up
-    document.getElementById('detailsPopup').innerHTML = `
-        <label for="college">College Name:</label>
-        <input type="text" id="college" name="college">
-        <label for="qualification">Highest Qualification:</label>
-        <input type="text" id="qualification" name="qualification">
-        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
-    `;
-}
+            if (variation === 'variationB') {
+                detailsPopup.innerHTML = `
+                    <label for="college">College Name:</label>
+                    <input type="text" id="college" name="college">
+                    <label for="qualification">Highest Qualification:</label>
+                    <input type="text" id="qualification" name="qualification">
+                    <div class="accept-terms">
+                        <input type="checkbox" id="acceptTerms" name="acceptTerms">
+                        <label for="acceptTerms">We accept</label>
+                    </div>
+                    <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+                `;
+            } else {
+                detailsPopup.innerHTML = `
+                    <label for="college">College Name:</label>
+                    <input type="text" id="college" name="college">
+                    <label for="qualification">Highest Qualification:</label>
+                    <input type="text" id="qualification" name="qualification">
+                    <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+                `;
+            }
+        }
+
+        
     
     </script>
 

@@ -199,6 +199,71 @@ Take me back to the night we met
         'event': 'page_view',
         'page_title': document.title
     });
+
+
+    //  for video gtm event
+    document.addEventListener('DOMContentLoaded', function() {
+  var video = document.getElementById('myVideo');
+
+  if (video) {
+    video.addEventListener('play', function() {
+      dataLayer.push({
+        'event': 'videoEvent',
+        'videoStatus': 'play',
+        'videoUrl': video.currentSrc,
+        'videoTitle': 'Sample Video' // Replace with the actual title
+      });
+    });
+
+    video.addEventListener('pause', function() {
+      dataLayer.push({
+        'event': 'videoEvent',
+        'videoStatus': 'pause',
+        'videoUrl': video.currentSrc,
+        'videoTitle': 'Sample Video'
+      });
+    });
+
+    video.addEventListener('ended', function() {
+      dataLayer.push({
+        'event': 'videoEvent',
+        'videoStatus': 'ended',
+        'videoUrl': video.currentSrc,
+        'videoTitle': 'Sample Video'
+      });
+    });
+
+    // Add listeners for other events (e.g., timeupdate for progress) as needed
+    video.addEventListener('timeupdate', function(){
+        var progress = (video.currentTime / video.duration) * 100;
+        if(progress > 25 && progress < 26){
+            dataLayer.push({
+                'event': 'videoEvent',
+                'videoStatus': '25%',
+                'videoUrl': video.currentSrc,
+                'videoTitle': 'Sample Video'
+            });
+        }
+        if(progress > 50 && progress < 51){
+            dataLayer.push({
+                'event': 'videoEvent',
+                'videoStatus': '50%',
+                'videoUrl': video.currentSrc,
+                'videoTitle': 'Sample Video'
+            });
+        }
+        if(progress > 75 && progress < 76){
+            dataLayer.push({
+                'event': 'videoEvent',
+                'videoStatus': '75%',
+                'videoUrl': video.currentSrc,
+                'videoTitle': 'Sample Video'
+            });
+        }
+    });
+
+  }
+});
     </script>
 
     

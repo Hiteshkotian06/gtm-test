@@ -218,6 +218,12 @@ function getCookie(name) {
             }
         }
 
+        // ABTesting Tracking
+        window.dataLayer.push({
+        'event': 'WeAcceptTesting', // Name your custom event
+        'WeAcceptTesting': variation // Add the variation as a key-value pair
+});
+        
         // Confirm Button Click Tracking
         document.getElementById("confirmBtn").addEventListener("click", function() {
             document.getElementById("testForm").style.display = "block";

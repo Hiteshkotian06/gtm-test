@@ -185,12 +185,12 @@ Take me back to the night we met
 
             if (variation === '1') {
                 document.getElementById("acceptTerms").addEventListener("change", function() {
-                    if (localStorage.getItem('gemhonoringTracked') !== '1') {
+                    if (localStorage.getItem('TermAcceptbuttonTracked') !== '1') {
                         window.dataLayer.push({
-                            'event': 'gemhonoring',
+                            'event': 'TermAccept',
                             'checkbox_checked': this.checked ? 1 : 0
                         });
-                        localStorage.setItem('gemhonoringTracked', '1');
+                        localStorage.setItem('TermAcceptbuttonTracked', '1');
                     }
                 });
             }

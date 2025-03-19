@@ -136,25 +136,43 @@
             var video = document.getElementById('myVideo');
             if (video) {
                 video.addEventListener('play', function() {
-                    dataLayer.push({'event': 'Sample Video', 'videoStatus': 'play', 'videoUrl': video.currentSrc, 'videoTitle': 'Sample Video'});
+                    dataLayer.push({'event': 'Sample Video', 
+                                    'videoStatus': 'play', 
+                                    'videoUrl': video.currentSrc, 
+                                    'videoTitle': 'Sample Video'});
                 });
                 video.addEventListener('pause', function() {
-                    dataLayer.push({'event': 'Sample Video', 'videoStatus': 'pause', 'videoUrl': video.currentSrc, 'videoTitle': 'Sample Video'});
+                    dataLayer.push({'event': 'Sample Video', 
+                                    'videoStatus': 'pause', 
+                                    'videoUrl': video.currentSrc, 
+                                    'videoTitle': 'Sample Video'});
                 });
                 video.addEventListener('ended', function() {
-                    dataLayer.push({'event': 'Sample Video', 'videoStatus': 'ended', 'videoUrl': video.currentSrc, 'videoTitle': 'Sample Video'});
+                    dataLayer.push({'event': 'Sample Video', 
+                                    'videoStatus': 'ended', 
+                                    'videoUrl': video.currentSrc, 
+                                    'videoTitle': 'Sample Video'});
                 });
 
                 video.addEventListener('timeupdate', function(){
                     var progress = (video.currentTime / video.duration) * 100;
                     if(progress > 25 && progress < 26){
-                        dataLayer.push({'event': 'Sample Video', 'videoStatus': '25%', 'videoUrl': video.currentSrc, 'videoTitle': 'Sample Video'});
+                        dataLayer.push({'event': 'Sample Video', 
+                                        'videoStatus': '25%', 
+                                        'videoUrl': video.currentSrc, 
+                                        'videoTitle': 'Sample Video'});
                     }
                     if(progress > 50 && progress < 51){
-                        dataLayer.push({'event': 'Sample Video', 'videoStatus': '50%', 'videoUrl': video.currentSrc, 'videoTitle': 'Sample Video'});
+                        dataLayer.push({'event': 'Sample Video', 
+                                        'videoStatus': '50%', 
+                                        'videoUrl': video.currentSrc, 
+                                        'videoTitle': 'Sample Video'});
                     }
                     if(progress > 75 && progress < 76){
-                        dataLayer.push({'event': 'Sample Video', 'videoStatus': '75%', 'videoUrl': video.currentSrc, 'videoTitle': 'Sample Video'});
+                        dataLayer.push({'event': 'Sample Video', 
+                                        'videoStatus': '75%', 
+                                        'videoUrl': video.currentSrc, 
+                                        'videoTitle': 'Sample Video'});
                     }
                 });
             }

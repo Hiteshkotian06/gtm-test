@@ -268,53 +268,7 @@ Take me back to the night we met
 });
 
 
-    function showPopup(button) {
-    var showCheckbox = parseInt(button.dataset.showCheckbox); // Get the data attribute value
-
-    var popupContent = `
-        <label for="college">College Name:</label>
-        <input type="text" id="college" name="college">
-        <label for="qualification">Highest Qualification:</label>
-        <input type="text" id="qualification" name="qualification">
-    `;
-
-    if (showCheckbox === 1) {
-        popupContent += `
-            <div class="accept-terms">
-                <input type="checkbox" id="acceptTerms" name="acceptTerms">
-                <label for="acceptTerms">We accept</label>
-            </div>
-        `;
-    }
-
-    popupContent += `<button onclick="closePopup()" class="Click_me_submit">Submit</button>`;
-
-    document.getElementById('detailsPopup').innerHTML = popupContent;
-    document.getElementById('detailsPopup').style.display = 'block';
-}
-
-function closePopup() {
-    var college = document.getElementById('college').value;
-    var qualification = document.getElementById('qualification').value;
-    var acceptTerms = document.getElementById('acceptTerms') ? document.getElementById('acceptTerms').checked : null; // Checkbox state or null if not present
-
-    // Perform actions based on the form data and checkbox
-    console.log("College:", college);
-    console.log("Qualification:", qualification);
-    console.log("Accept Terms:", acceptTerms);
-
-    // Add your A/B testing logic here:
-    // Example:
-    dataLayer.push({
-        'event': 'formSubmit',
-        'acceptTerms': acceptTerms,
-        'college': college,
-        'qualification': qualification
-    });
-
-    // Close the popup
-    document.getElementById('detailsPopup').style.display = 'none';
-}
+    
     </script>
 
     

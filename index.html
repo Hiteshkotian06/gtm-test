@@ -291,6 +291,11 @@ Take me back to the night we met
             renderPopup();
         }
 
+        function showPopup() {
+            renderPopup(); // Call renderPopup first to update the content
+            document.getElementById("overlay").style.display = "block";
+}
+
         function renderPopup() {
             let currentVariation = localStorage.getItem('abTestVariation');
             var detailsPopup = document.getElementById('detailsPopup');

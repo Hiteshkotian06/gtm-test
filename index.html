@@ -279,7 +279,7 @@ Take me back to the night we met
             if (storedVariation) {
                 return storedVariation;
             } else {
-                let newVariation = Math.random() < 0.5 ? 'variationA' : 'variationB';
+                let newVariation = Math.random() < 0.5 ? '0' : '1';
                 localStorage.setItem('abTestVariation', newVariation);
                 return newVariation;
             }
@@ -301,7 +301,7 @@ Take me back to the night we met
             var detailsPopup = document.getElementById('detailsPopup');
             detailsPopup.style.display = 'block';
 
-            if (currentVariation === 'variationB') {
+            if (currentVariation === '1') {
                 detailsPopup.innerHTML = `
                     <label for="college">College Name:</label>
                     <input type="text" id="college" name="college">

@@ -42,7 +42,7 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <br><br>
-        <button type="submit" class="Confirm_submit">Submit</button>
+        <button id="Submit" type="submit" class="Confirm_submit">Submit</button>
     </form>
 
     <div class="popup" id="detailsPopup" "></div>
@@ -202,7 +202,7 @@ function getCookie(name) {
                 <label for="acceptTerms">We accept</label>
             </div>
         ` : ''}
-        <button id="testForm" onclick="closePopup()" class="Click_me_submit">Submit</button>
+        <button id="Submit" onclick="closePopup()" class="Click_me_submit">Submit</button>
     `;
 
          // ABTesting Tracking
@@ -233,7 +233,7 @@ function getCookie(name) {
         });
 
         // Form Submission Tracking
-        document.getElementById("testForm").addEventListener("submit", function(event) {
+        document.getElementById("Submit").addEventListener("submit", function(event) {
             window.dataLayer.push({
                 'event':'Confirm-Submit'
             });

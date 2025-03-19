@@ -178,9 +178,7 @@ function getCookie(name) {
 
         const variation = assignVariation(); // Store globally
 
-
-        }
-        function showPopup() {
+function showPopup() {
     let popup = document.getElementById("detailsPopup");
     let overlay = document.getElementById("overlay");
 
@@ -188,27 +186,28 @@ function getCookie(name) {
         return; // Prevent multiple firings
     }
 
-        function closePopup() {
-            document.getElementById("detailsPopup").style.display = "none";
-            document.getElementById("overlay").style.display = "none";
-        }
+    popup.style.display = "block";
+    overlay.style.display = "block";
 
-            function renderPopup() {
-    let popup = document.getElementById('detailsPopup');
-    popup.style.display = 'block';
     popup.innerHTML = `
         <label for="college">College Name:</label>
         <input type="text" id="college" name="college">
+        <br><br>
         <label for="qualification">Highest Qualification:</label>
         <input type="text" id="qualification" name="qualification">
+        <br><br>
         ${variation === '1' ? `
             <div class="accept-terms flex-row">
                 <input type="checkbox" id="acceptTerms" name="acceptTerms">
                 <label for="acceptTerms">We accept</label>
             </div>
         ` : ''}
+        <br>
         <button onclick="closePopup()" class="submit-button Click_me_submit">Submit</button>
     `;
+        
+
+
 
          // ABTesting Tracking
 
@@ -229,6 +228,10 @@ function getCookie(name) {
         });
     }
 }
+function closePopup() {
+            document.getElementById("detailsPopup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
 
         
         // Confirm Button Click Tracking

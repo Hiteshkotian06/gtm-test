@@ -43,7 +43,7 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <br><br>
-        <button type="submit" class="Click_me_submit">Submit</button>
+        <button type="submit" class="Confirm_submit">Submit</button>
     </form>
 
 
@@ -54,7 +54,7 @@
         <label for="qualification">Highest Qualification:</label>
         <input type="text" id="qualification" name="qualification">
 
-        <button onclick="closePopup()" class="Confirm_submit">Submit</button>
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
     </div>
 
     <div class="overlay" id="overlay"></div>
@@ -208,7 +208,7 @@ Take me back to the night we met
   if (video) {
     video.addEventListener('play', function() {
       dataLayer.push({
-        'event': 'videoEvent',
+        'event': 'Sample Video',
         'videoStatus': 'play',
         'videoUrl': video.currentSrc,
         'videoTitle': 'Sample Video' // Replace with the actual title
@@ -217,7 +217,7 @@ Take me back to the night we met
 
     video.addEventListener('pause', function() {
       dataLayer.push({
-        'event': 'videoEvent',
+        'event': 'Sample Video',
         'videoStatus': 'pause',
         'videoUrl': video.currentSrc,
         'videoTitle': 'Sample Video'
@@ -226,7 +226,7 @@ Take me back to the night we met
 
     video.addEventListener('ended', function() {
       dataLayer.push({
-        'event': 'videoEvent',
+        'event': 'Sample Video',
         'videoStatus': 'ended',
         'videoUrl': video.currentSrc,
         'videoTitle': 'Sample Video'
@@ -238,7 +238,7 @@ Take me back to the night we met
         var progress = (video.currentTime / video.duration) * 100;
         if(progress > 25 && progress < 26){
             dataLayer.push({
-                'event': 'videoEvent',
+                'event': 'Sample Video',
                 'videoStatus': '25%',
                 'videoUrl': video.currentSrc,
                 'videoTitle': 'Sample Video'
@@ -246,7 +246,7 @@ Take me back to the night we met
         }
         if(progress > 50 && progress < 51){
             dataLayer.push({
-                'event': 'videoEvent',
+                'event': 'Sample Video',
                 'videoStatus': '50%',
                 'videoUrl': video.currentSrc,
                 'videoTitle': 'Sample Video'
@@ -254,7 +254,7 @@ Take me back to the night we met
         }
         if(progress > 75 && progress < 76){
             dataLayer.push({
-                'event': 'videoEvent',
+                'event': 'Sample Video',
                 'videoStatus': '75%',
                 'videoUrl': video.currentSrc,
                 'videoTitle': 'Sample Video'

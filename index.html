@@ -228,10 +228,11 @@ function showPopup() {
         });
     }
 }
-function closePopup() {
-            document.getElementById("detailsPopup").style.display = "none";
-            document.getElementById("overlay").style.display = "none";
-        }
+
+        function closePopup() {
+    document.getElementById("detailsPopup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+}
 
         
         // Confirm Button Click Tracking
@@ -239,12 +240,13 @@ function closePopup() {
             document.getElementById("testForm").style.display = "block";
             window.dataLayer.push({'event': 'confirm_button_clicked'});
         });
+           
 
-        // Form Submission Tracking
-       document.addEventListener('DOMContentLoaded', function() {
+// Form Submission Tracking
+document.addEventListener('DOMContentLoaded', function() {
     // Select all elements with the class "submit-button"
     const submitButtons = document.querySelectorAll('.submit-button');
-               // Add click event listener to each button
+    // Add click event listener to each button
     submitButtons.forEach(button => {
         button.addEventListener('click', function(event) {
             window.dataLayer.push({
@@ -272,17 +274,7 @@ function closePopup() {
             }
         });
     });
-            
-            event.preventDefault();
-            window.dataLayer.push({
-                'event': 'Submission-Popup',
-                'form_data': {
-                    'name': document.getElementById("name").value,
-                    'email': document.getElementById("email").value
-                }
-            });
-            alert("Form Submitted! Check GTM Data Layer.");
-        });
+});
 
         // Page View Tracking
         window.dataLayer.push({

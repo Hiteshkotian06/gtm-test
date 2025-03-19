@@ -271,28 +271,32 @@ Take me back to the night we met
   }
 });
 
-        
         // A/B testing logic
         var variation = assignVariation(); // Store the variation globally
 
         function assignVariation() {
-            if (Math.random() < 0.5) {
-                return 'variationA';
+            let storedVariation = localStorage.getItem('abTestVariation');
+            if (storedVariation) {
+                return storedVariation;
             } else {
-                return 'variationB';
+                let newVariation = Math.random() < 0.5 ? 'variationA' : 'variationB';
+                localStorage.setItem('abTestVariation', newVariation);
+                return newVariation;
             }
         }
 
-        function setVariation(newVariation) { // Function to change variation
+        function setVariation(newVariation) {
+            localStorage.setItem('abTestVariation', newVariation);
             variation = newVariation;
-            renderPopup(); // Re-render the popup with the new variation
+            renderPopup();
         }
 
         function renderPopup() {
+            let currentVariation = localStorage.getItem('abTestVariation');
             var detailsPopup = document.getElementById('detailsPopup');
-            detailsPopup.style.display = 'block'; // Ensure it's visible before setting innerHTML
+            detailsPopup.style.display = 'block';
 
-            if (variation === 'variationB') {
+            if (currentVariation === 'variationB') {
                 detailsPopup.innerHTML = `
                     <label for="college">College Name:</label>
                     <input type="text" id="college" name="college">
@@ -314,9 +318,7 @@ Take me back to the night we met
                 `;
             }
         }
-
         
-    
     </script>
 
     

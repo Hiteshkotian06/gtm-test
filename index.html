@@ -279,7 +279,7 @@ Take me back to the night we met
             if (storedVariation) {
                 return storedVariation;
             } else {
-                let newVariation = Math.random() < 0.5 ? 'variationA' : 'variationB';
+                let newVariation = Math.random() < 0.5 ? '0' : '1';
                 localStorage.setItem('abTestVariation', newVariation);
                 return newVariation;
             }

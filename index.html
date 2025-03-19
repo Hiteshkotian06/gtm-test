@@ -209,6 +209,9 @@ function getCookie(name) {
         const acceptTermsCheckbox = document.getElementById('acceptTerms');
 
         if (acceptTermsCheckbox) {
+            // Push 'Term_shown' event when checkbox is displayed
+            window.dataLayer.push({ 'event': 'Term_Accept_Shown' });
+            
             acceptTermsCheckbox.addEventListener("change", function() {
                 window.dataLayer.push({
                     'event': 'TermAccept_Checked',

@@ -206,17 +206,31 @@ function getCookie(name) {
             `;
 
             // ABTesting Tracking
-            if (variation === '1') {
-                document.getElementById("acceptTerms").addEventListener("change", function() {
-                    if (localStorage.getItem('TermAcceptbuttonTracked') !== '1') {
-                        window.dataLayer.push({
-                            'event': 'TermAccept',
-                            'checkbox_checked': this.checked ? 1 : 0
-                        });
-                        console.log("TermAccept event fired");
-                    }
-                });
-            }
+           if (variation === '1') {
+    setTimeout(() => {  
+        let checkbox = document.getElementById("acceptTerms");
+        if (checkbox) {
+            console.log("✅ Checkbox Found");
+            checkbox.addEventListener("change", function() {
+                console.log("✅ Checkbox Changed, Checked:", this.checked);
+                
+                if (localStorage.getItem('TermAcceptbuttonTracked') !== '1') {
+                    console.log("✅ Pushing TermAccept event to dataLayer...");
+                    window.dataLayer.push({
+                        'event': 'TermAccept',
+                        'checkbox_checked': this.checked ? 1 : 0
+                    });
+                    localStorage.setItem('TermAcceptbuttonTracked', '1');
+                    console.log("✅ Event Successfully Pushed");
+                } else {
+                    console.warn("⚠️ TermAccept already tracked, skipping event push.");
+                }
+            });
+        } else {
+            console.warn("⚠️ Checkbox NOT FOUND");
+        }
+    }, 500); 
+}
         }
 
         

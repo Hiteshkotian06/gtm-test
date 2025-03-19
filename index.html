@@ -178,10 +178,15 @@ function getCookie(name) {
 
         const variation = assignVariation(); // Store globally
 
-        function showPopup() {
-            renderPopup();
-            document.getElementById("overlay").style.display = "block";
+
         }
+        function showPopup() {
+    let popup = document.getElementById("detailsPopup");
+    let overlay = document.getElementById("overlay");
+
+    if (popup.style.display === "block") {
+        return; // Prevent multiple firings
+    }
 
         function closePopup() {
             document.getElementById("detailsPopup").style.display = "none";

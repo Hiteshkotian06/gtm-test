@@ -43,8 +43,21 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <br><br>
-        <button type="submit">Submit</button>
+        <button type="submit" class="Click_me_submit">Submit</button>
     </form>
+
+
+        <div class="popup" id="detailsPopup">
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+
+        <button onclick="closePopup()" class="Confirm_submit">Submit</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
 
     <br><br>
 
@@ -143,18 +156,6 @@ Take me back to the night we met
         </pre>
       </div>
     </div>
-
-    <div class="popup" id="detailsPopup">
-        <label for="college">College Name:</label>
-        <input type="text" id="college" name="college">
-
-        <label for="qualification">Highest Qualification:</label>
-        <input type="text" id="qualification" name="qualification">
-
-        <button onclick="closePopup()">Submit</button>
-    </div>
-
-    <div class="overlay" id="overlay"></div>
 
     <script>
         function showPopup() {

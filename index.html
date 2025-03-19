@@ -54,9 +54,13 @@
         <label for="qualification">Highest Qualification:</label>
         <input type="text" id="qualification" name="qualification">
 
+        <div class="accept-terms">
+        <input type="checkbox" id="acceptTerms" name="acceptTerms">
+        <label for="acceptTerms">We accept</label>
+    </div>
+        
         <button onclick="closePopup()" class="Click_me_submit">Submit</button>
-        <button onclick="showPopup(this)" data-show-checkbox="1">Show Popup with Checkbox</button>
-        <button onclick="showPopup(this)" data-show-checkbox="0">Show Popup without Checkbox</button>
+
     </div>
 
     <div class="overlay" id="overlay"></div>
@@ -267,7 +271,75 @@ Take me back to the night we met
   }
 });
 
+        
+        // Example A/B testing logic
+function assignVariation() {
+    if (Math.random() < 0.5) {
+        return 'variationA'; // Original pop-up
+    } else {
+        return 'variationB'; // Pop-up with checkbox
+    }
+}
 
+var variation = assignVariation();
+
+if (variation === 'variationB') {
+    // Show pop-up with checkbox
+    document.getElementById('detailsPopup').innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        <div class="accept-terms">
+            <input type="checkbox" id="acceptTerms" name="acceptTerms">
+            <label for="acceptTerms">We accept</label>
+        </div>
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+} else {
+    // Show original pop-up
+    document.getElementById('detailsPopup').innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+}
+        // Example A/B testing logic
+function assignVariation() {
+    if (Math.random() < 0.5) {
+        return 'variationA'; // Original pop-up
+    } else {
+        return 'variationB'; // Pop-up with checkbox
+    }
+}
+
+var variation = assignVariation();
+
+if (variation === 'variationB') {
+    // Show pop-up with checkbox
+    document.getElementById('detailsPopup').innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        <div class="accept-terms">
+            <input type="checkbox" id="acceptTerms" name="acceptTerms">
+            <label for="acceptTerms">We accept</label>
+        </div>
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+} else {
+    // Show original pop-up
+    document.getElementById('detailsPopup').innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+}
     
     </script>
 

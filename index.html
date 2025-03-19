@@ -204,21 +204,24 @@ function getCookie(name) {
         ` : ''}
         <button onclick="closePopup()" class="Click_me_submit">Submit</button>
     `;
-         // ABTesting Tracking
-    if (variation === '1') {
-        const acceptTermsCheckbox = document.getElementById('acceptTerms');
 
-        if (acceptTermsCheckbox) {
-            // Push 'Term_shown' event when checkbox is displayed
-            window.dataLayer.push({ 'event': 'Term_Accept_Shown' });
-            
-            acceptTermsCheckbox.addEventListener("change", function() {
-                window.dataLayer.push({
-                    'event': 'TermAccept_Checked',
-                    'checkbox_checked': this.checked ? 1 : 0
-                });
+         // ABTesting Tracking
+
+    let termShownValue = variation === '1' ? 1 : 0;
+    window.dataLayer.push({ 
+        'event': 'Term_shown', 
+        'term_shown': termShownValue 
+    });
+
+                
+    if (termShownValue === 1) {
+        const acceptTermsCheckbox = document.getElementById('acceptTerms');
+        acceptTermsCheckbox.addEventListener("change", function() {
+            window.dataLayer.push({
+                'event': 'TermAccept_Checked',
+                'checkbox_checked': this.checked ? 1 : 0
             });
-        }
+        });
     }
 }
 

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTM Test Page</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KD7B66SJ');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KD7B66SJ"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <h1>GTM Test Page</h1>
+    <p>Check Google Tag Manager in Preview Mode.</p>
+    <div class="songs-wrapper">
+        <div class="song-container">
+
+    <!-- Confirm Button -->
+        <button id="confirmBtn" class="green-button">Confirm</button>
+    <!--     Click me Button -->
+        <button class="green-button" onclick="showPopup()">Click Me</button>
+    </div>
+    </div>
+
+    <!-- Form (Initially Hidden) -->
+    <form id="testForm" style="display:none; margin-top: 20px;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        <button type="submit" class="Confirm_submit">Submit</button>
+    </form>
+
+
+    <div class="popup" id="detailsPopup">
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+
+        <div class="accept-terms">
+        <input type="checkbox" id="acceptTerms" name="acceptTerms">
+        <label for="acceptTerms">We accept</label>
+    </div>
+        
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <br><br>
+
+    <video id="myVideo" controls height="350">
+        <source src= "SampleVideo_1280x720_5mb.mp4" type="video/mp4" >
+        Your browser does not support the video tag.
+    </video>
+    <br>
+        <pre>
+
+    </pre>
+    </div>
+
+    <div class="songs-wrapper">
+        <div class="song-container">
+        
+        <a href = "song1.html" target="_blank" id="song" class="second_song"><h2>There's Nothing holding me back</h2></a>
+        <pre>
+I wanna follow where she goes
+I think about her and she knows it
+I wanna let her take control
+'Cause every time that she gets close, yeah
+She pulls me in enough to keep me guessin', hm
+And maybe I should stop and start confessin'
+Confessin', yeah
+Oh, I've been shakin', I love it when you go crazy
+You take all my inhibitions
+Baby, there's nothing holdin' me back
+You take me places that tear up my reputation
+Manipulate my decisions
+Baby, there's nothing holdin' me back
+There's nothing holdin' me back
+There's nothing holdin' me back
+She says that she's never afraid
+Just picture everybody naked
+She really doesn't like to wait
+Not really into hesitation
+Pulls me in enough to keep me guessin', whoa
+And maybe I should stop and start confessin'
+Confessin', yeah
+Oh, I've been shakin', I love it when you go crazy
+You take all my inhibitions
+Baby, there's nothing holdin' me back
+You take me places that tear up my reputation
+Manipulate my decisions
+Baby, there's nothing holdin' me back
+There's nothing holdin' me back
+'Cause if we lost our minds and we took it way too far
+I know we'd be alright, I know we would be alright
+If you were by my side and we stumbled in the dark
+I know we'd be alright, I know we would be alright
+'Cause if we lost our minds and we took it way too far
+I know we'd be alright, I know we would be alright
+If you were by my side and we stumbled in the dark
+I know we'd be alright, we would be alright
+Oh, I've been shakin', I love it when you go crazy
+You take all my inhibitions
+Baby, there's nothing holdin' me back
+You take me places that tear up my reputation
+Manipulate my decisions
+Baby, there's nothing holdin' me back, oh-whoa
+There's nothing holdin' me back
+I feel so free when you're with me, baby
+Baby, there's nothing holdin' me back
+        </pre>
+      </div>
+      
+      
+      <div class="song-container vertical-line">
+        <a href="song2.html" target="_blank" id="song" class="first_song"><h2>Night We Met</h2></a></a>
+        <pre>
+I am not the only traveler
+Who has not repaid his debt
+I've been searching for a trail to follow again
+Take me back to the night we met
+And then I can tell myself
+What the hell I'm supposed to do
+And then I can tell myself
+Not to ride along with you
+I had all and then most of you
+Some and now none of you
+Take me back to the night we met
+I don't know what I'm supposed to do
+Haunted by the ghost of you
+Oh, take me back to the night we met
+When the night was full of terrors
+And your eyes were filled with tears
+When you had not touched me yet
+Oh, take me back to the night we met
+I had all and then most of you
+Some and now none of you
+Take me back to the night we met
+I don't know what I'm supposed to do
+Haunted by the ghost of you
+Take me back to the night we met
+        </pre>
+      </div>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById("detailsPopup").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("detailsPopup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+      
+        // Show form when Confirm button is clicked
+        document.getElementById("confirmBtn").addEventListener("click", function() {
+            document.getElementById("testForm").style.display = "block";
+            window.dataLayer.push({'event': 'confirm_button_clicked'});
+        });
+
+        // Push event to dataLayer on form submission
+        document.getElementById("testForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            window.dataLayer.push({
+                'event': 'form_submitted',
+                'form_data': {
+                    'name': document.getElementById("name").value,
+                    'email': document.getElementById("email").value
+                }
+            });
+            alert("Form Submitted! Check GTM Data Layer.");
+        });
+
+        // Verify GTM by sending a page_view event
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'page_view',
+            'page_title': document.title
+        });
+
+        // Send page view event
+    window.dataLayer.push({
+        'event': 'page_view',
+        'page_title': document.title
+    });
+
+
+    //  for video gtm event
+    document.addEventListener('DOMContentLoaded', function() {
+  var video = document.getElementById('myVideo');
+
+  if (video) {
+    video.addEventListener('play', function() {
+      dataLayer.push({
+        'event': 'Sample Video',
+        'videoStatus': 'play',
+        'videoUrl': video.currentSrc,
+        'videoTitle': 'Sample Video' // Replace with the actual title
+      });
+    });
+
+    video.addEventListener('pause', function() {
+      dataLayer.push({
+        'event': 'Sample Video',
+        'videoStatus': 'pause',
+        'videoUrl': video.currentSrc,
+        'videoTitle': 'Sample Video'
+      });
+    });
+
+    video.addEventListener('ended', function() {
+      dataLayer.push({
+        'event': 'Sample Video',
+        'videoStatus': 'ended',
+        'videoUrl': video.currentSrc,
+        'videoTitle': 'Sample Video'
+      });
+    });
+
+    // Add listeners for other events (e.g., timeupdate for progress) as needed
+    video.addEventListener('timeupdate', function(){
+        var progress = (video.currentTime / video.duration) * 100;
+        if(progress > 25 && progress < 26){
+            dataLayer.push({
+                'event': 'Sample Video',
+                'videoStatus': '25%',
+                'videoUrl': video.currentSrc,
+                'videoTitle': 'Sample Video'
+            });
+        }
+        if(progress > 50 && progress < 51){
+            dataLayer.push({
+                'event': 'Sample Video',
+                'videoStatus': '50%',
+                'videoUrl': video.currentSrc,
+                'videoTitle': 'Sample Video'
+            });
+        }
+        if(progress > 75 && progress < 76){
+            dataLayer.push({
+                'event': 'Sample Video',
+                'videoStatus': '75%',
+                'videoUrl': video.currentSrc,
+                'videoTitle': 'Sample Video'
+            });
+        }
+    });
+
+  }
+});
+
+        
+        // Example A/B testing logic
+function assignVariation() {
+    if (Math.random() < 0.5) {
+        return 'variationA'; // Original pop-up
+    } else {
+        return 'variationB'; // Pop-up with checkbox
+    }
+}
+
+var variation = assignVariation();
+
+if (variation === 'variationB') {
+    // Show pop-up with checkbox
+    document.getElementById('detailsPopup').innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        <div class="accept-terms">
+            <input type="checkbox" id="acceptTerms" name="acceptTerms">
+            <label for="acceptTerms">We accept</label>
+        </div>
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+} else {
+    // Show original pop-up
+    document.getElementById('detailsPopup').innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+}
+        // Example A/B testing logic
+function assignVariation() {
+    if (Math.random() < 0.5) {
+        return 'variationA'; // Original pop-up
+    } else {
+        return 'variationB'; // Pop-up with checkbox
+    }
+}
+
+var variation = assignVariation();
+
+if (variation === 'variationB') {
+    // Show pop-up with checkbox
+    document.getElementById('detailsPopup').innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        <div class="accept-terms">
+            <input type="checkbox" id="acceptTerms" name="acceptTerms">
+            <label for="acceptTerms">We accept</label>
+        </div>
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+} else {
+    // Show original pop-up
+    document.getElementById('detailsPopup').innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college">
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification">
+        <button onclick="closePopup()" class="Click_me_submit">Submit</button>
+    `;
+}
+    
+    </script>
+
+    
+</body>
+</html>

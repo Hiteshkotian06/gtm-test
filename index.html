@@ -231,6 +231,14 @@ const variation = assignVariation(); // Store globally
             'term_shown': 1
         });
 
+     // Set initial checkbox state based on variation
+            const variation = assignVariation();
+            if (variation === '1') {
+                document.getElementById("acceptTerms").checked = true;
+            } else {
+                document.getElementById("acceptTerms").checked = false;
+            }
+     
      // Fire GTM event for initial checkbox status
     window.dataLayer.push({
         'event': 'checkbox_initial_status',

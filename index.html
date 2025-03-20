@@ -232,64 +232,60 @@ function getCookie(name) {
             document.getElementById("overlay").style.display = "none";
         }
 
-        // Event listener for "Click Me" button
-        document.getElementById("clickMeBtn").addEventListener("click", function() {
-            showPopup();
+        document.addEventListener("DOMContentLoaded", function() {
+        // Confirm Button Click Event
+        document.getElementById("confirmBtn").addEventListener("click", function() {
+            document.getElementById("testForm").style.display = "block"; // Show the form
+            window.dataLayer.push({'event': 'confirm_button_clicked'});
         });
 
-       document.addEventListener("DOMContentLoaded", function() {
-    // Confirm Button Click Event
-    document.getElementById("confirmBtn").addEventListener("click", function() {
-        document.getElementById("testForm").style.display = "block"; // Show the form
-        window.dataLayer.push({'event': 'confirm_button_clicked'});
-    });
-
-    // Form Submission
-    document.getElementById("testForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        window.dataLayer.push({
-            'event': 'Confirm-Submit',
-            'form_data': {
-                'name': document.getElementById("name").value,
-                'email': document.getElementById("email").value
-            }
-        });
-        alert("Form Submitted! Check GTM Data Layer.");
-    });
-
-    // Page View Tracking
-    window.dataLayer.push({
-        'event': 'page_view',
-        'page_title': document.title
-    });
-
-    // Form Submission Tracking for all submit buttons
-    const submitButtons = document.querySelectorAll('.submit-button');
-    submitButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
+        // Form Submission
+        document.getElementById("testForm").addEventListener("submit", function(event) {
+            event.preventDefault();
             window.dataLayer.push({
                 'event': 'Confirm-Submit',
-                'button_class': 'submit-button'
+                'form_data': {
+                    'name': document.getElementById("name").value,
+                    'email': document.getElementById("email").value
+                }
             });
+            alert("Form Submitted! Check GTM Data Layer.");
+        });
 
-            // If the button is inside the form, handle form submission
-            if (button.closest('#testForm')) {
-                event.preventDefault();
+        // Page View Tracking
+        window.dataLayer.push({
+            'event': 'page_view',
+            'page_title': document.title
+        });
+
+        // Form Submission Tracking for all submit buttons
+        const submitButtons = document.querySelectorAll('.submit-button');
+        submitButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
                 window.dataLayer.push({
-                    'event': 'Submission-Popup',
-                    'form_data': {
-                        'name': document.getElementById("name").value,
-                        'email': document.getElementById("email").value
-                    }
+                    'event': 'Confirm-Submit',
+                    'button_class': 'submit-button'
                 });
-                alert("Form Submitted! Check GTM Data Layer.");
-            }
 
-            // If the button is inside the popup, close the popup.
-            if (button.closest('#detailsPopup')) {
-                document.getElementById("detailsPopup").style.display = "none";
-                document.getElementById("overlay").style.display = "none";
-            }
+                // If the button is inside the form, handle form submission
+                if (button.closest('#testForm')) {
+                    event.preventDefault();
+                    window.dataLayer.push({
+                        'event': 'Submission-Popup',
+                        'form_data': {
+                            'name': document.getElementById("name").value,
+                            'email': document.getElementById("email").value
+                        }
+                    });
+                    alert("Form Submitted! Check GTM Data Layer.");
+                }
+
+                // If the button is inside the popup, close the popup.
+                if (button.closest('#detailsPopup')) {
+                    document.getElementById("detailsPopup").style.display = "none";
+                    document.getElementById("overlay").style.display = "none";
+                }
+            });
         });
     });
 

@@ -42,7 +42,7 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <br><br>
-        <button type="submit" id="submit-button" class="Confirm_submit">Submit</button>
+        <button type="submit" id="main-form_submit" class="Confirm_submit">Submit</button>
     </form>
 
     <div class="popup" id="detailsPopup"></div>
@@ -179,123 +179,61 @@ function getCookie(name) {
         const variation = assignVariation(); // Store globally
 
  function showPopup() {
-        let popup = document.getElementById("detailsPopup");
-        let overlay = document.getElementById("overlay");
+            let popup = document.getElementById("detailsPopup");
+            let overlay = document.getElementById("overlay");
 
-        popup.innerHTML = `
-            <label for="college">College Name:</label>
-            <input type="text" id="college" name="college" required>
-            <br><br>
-            <label for="qualification">Highest Qualification:</label>
-            <input type="text" id="qualification" name="qualification" required>
-            <br><br>
-            <div class="accept-terms flex-row">
-                <input type="checkbox" id="acceptTerms" name="acceptTerms">
-                <label for="acceptTerms">We accept</label>
-            </div>
-            <br>
-            <button id="clickMeSubmit" id="submit-button" class="Click_me_submit">Submit</button>
-        `;
+            popup.innerHTML = `
+                <label for="college">College Name:</label>
+                <input type="text" id="college" name="college" required>
+                <br><br>
+                <label for="qualification">Highest Qualification:</label>
+                <input type="text" id="qualification" name="qualification" required>
+                <br><br>
+                <div class="accept-terms flex-row">
+                    <input type="checkbox" id="acceptTerms" name="acceptTerms">
+                    <label for="acceptTerms">We accept</label>
+                </div>
+                <br>
+                <button id="popupFormSubmit" class="Click_me_submit">Submit</button>
+            `;
 
-        // Show popup
-        popup.style.display = "block";
-        overlay.style.display = "block";
+            // ... (Your popup display and event listeners) ...
+            document.getElementById("popupFormSubmit").addEventListener("click", function() {
+                const collegeInput = document.getElementById("college");
+                const qualificationInput = document.getElementById("qualification");
 
-        // Fire GTM event when popup appears
-        window.dataLayer.push({
-            'event': 'Term_shown',
-            'term_shown': 1
-        });
-
-        // Listen for checkbox change inside the popup
-        document.getElementById("acceptTerms").addEventListener("change", function() {
-            window.dataLayer.push({
-                'event': 'TermAccept_Checked',
-                'checkbox_checked': this.checked ? 1 : 0
-            });
-        });
-
-        // Listen for submit button click inside the popup
-        document.getElementById("clickMeSubmit").addEventListener("click", function() {
-            const collegeInput = document.getElementById("college");
-            const qualificationInput = document.getElementById("qualification");
-
-            if (!collegeInput.value || !qualificationInput.value) {
-                alert("Please fill in all required fields.");
-                return;
-            }
-
-            window.dataLayer.push({
-                'event': 'ClickMe_Submit',
-                'button_class': 'Click_me_submit'
-            });
-            closePopup();
-        });
-
-        // Form Submission Tracking for all submit buttons (inside popup)
-        const submitButtons = document.querySelectorAll('.submit-button');
-        submitButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                window.dataLayer.push({
-                    'event': 'Submit',
-                    'button_class': 'submit-button'
-                });
-
-                if (button.closest('#detailsPopup')) {
-                    document.getElementById("detailsPopup").style.display = "none";
-                    document.getElementById("overlay").style.display = "none";
+                if (!collegeInput.value || !qualificationInput.value) {
+                    alert("Please fill in all required fields.");
+                    return;
                 }
+
+                window.dataLayer.push({
+                    'event': 'ClickMe_Submit',
+                    'button_class': 'Click_me_submit'
+                });
+                closePopup();
             });
-        });
-    }
 
-    function closePopup() {
-            document.getElementById("detailsPopup").style.display = "none";
-            document.getElementById("overlay").style.display = "none";
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        // Confirm Button Click Event
-        document.getElementById("confirmBtn").addEventListener("click", function() {
-            document.getElementById("testForm").style.display = "block";
-            window.dataLayer.push({'event': 'confirm_button_clicked'});
-        });
-
-        // Form Submission
-        document.getElementById("testForm").addEventListener("submit", function(event) {
-            if (!this.checkValidity()) {
-                event.preventDefault();
-                this.reportValidity();
-            } else {
-                event.preventDefault();
-                window.dataLayer.push({
-                    'event': 'Confirm-Submit',
-                    'form_data': {
-                        'name': document.getElementById("name").value,
-                        'email': document.getElementById("email").value
-                    }
-                });
-                alert("Form Submitted! Check GTM Data Layer.");
+            // Function to close popup
+            function closePopup() {
+                document.getElementById("detailsPopup").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
             }
-        });
+        }
 
-        // Page View Tracking
-        window.dataLayer.push({
-            'event': 'page_view',
-            'page_title': document.title
-        });
+        document.addEventListener("DOMContentLoaded", function() {
+            // Confirm Button Click Event
+            document.getElementById("confirmBtn").addEventListener("click", function() {
+                document.getElementById("testForm").style.display = "block";
+                window.dataLayer.push({'event': 'confirm_button_clicked'});
+            });
 
-        // Form Submission Tracking for all submit buttons
-        const submitButtons = document.querySelectorAll('.submit-button');
-        submitButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                window.dataLayer.push({
-                    'event': 'Submit',
-                    'button_class': button.className
-                });
-
-                if (button.closest('#testForm')) {
+            // Form Submission
+            document.getElementById("testForm").addEventListener("submit", function(event) {
+                if (!this.checkValidity()) {
+                    event.preventDefault();
+                    this.reportValidity();
+                } else {
                     event.preventDefault();
                     window.dataLayer.push({
                         'event': 'Confirm-Submit',
@@ -305,22 +243,14 @@ function getCookie(name) {
                         }
                     });
                     alert("Form Submitted! Check GTM Data Layer.");
-                } else if (button.closest('#detailsPopup')) {
-                    const college = document.getElementById("college").value;
-                    const qualification = document.getElementById("qualification").value;
-
-                    window.dataLayer.push({
-                        'event': 'Popup-Submit',
-                        'form_data': {
-                            'college': college,
-                            'qualification': qualification
-                        }
-                    });
-                    closePopup();
                 }
             });
-        });
 
+            // Page View Tracking
+            window.dataLayer.push({
+                'event': 'page_view',
+                'page_title': document.title
+            });
         // Video Event Tracking
         var video = document.getElementById('myVideo');
         if (video) {

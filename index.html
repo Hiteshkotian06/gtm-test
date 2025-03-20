@@ -208,6 +208,12 @@ function getCookie(name) {
             'term_shown': 1
         });
 
+     // Fire GTM event for initial checkbox status
+    window.dataLayer.push({
+        'event': 'checkbox_initial_status',
+        'checkbox_status': document.getElementById("acceptTerms").checked ? 1 : 0
+    });
+
 // Listen for checkbox change inside the popup
         document.getElementById("acceptTerms").addEventListener("change", function() {
             window.dataLayer.push({

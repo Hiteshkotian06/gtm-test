@@ -237,25 +237,26 @@ function getCookie(name) {
             showPopup();
         });
 
-        // Event listener for "Confirm" button
-        document.getElementById("confirmBtn").addEventListener("click", function() {
-            document.getElementById("testForm").style.display = "block";
-            window.dataLayer.push({'event': 'confirm_button_clicked'});
-        });
+       document.addEventListener("DOMContentLoaded", function() {
+    // Confirm Button Click Event
+    document.getElementById("confirmBtn").addEventListener("click", function() {
+        document.getElementById("testForm").style.display = "block"; // Show the form
+        window.dataLayer.push({'event': 'confirm_button_clicked'});
+    });
 
-        // Event listener for form submission
-        document.getElementById("testForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            window.dataLayer.push({
-                'event': 'Confirm-Submit',
-                'form_data': {
-                    'name': document.getElementById("name").value,
-                    'email': document.getElementById("email").value
-                }
-            });
-            alert("Form Submitted! Check GTM Data Layer.");
+    // Form Submission
+    document.getElementById("testForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        window.dataLayer.push({
+            'event': 'Confirm-Submit',
+            'form_data': {
+                'name': document.getElementById("name").value,
+                'email': document.getElementById("email").value
+            }
         });
-
+        alert("Form Submitted! Check GTM Data Layer.");
+    });
+});
         // Page View Tracking
         window.dataLayer.push({
             'event': 'page_view',

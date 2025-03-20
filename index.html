@@ -208,11 +208,11 @@ function getCookie(name) {
             'term_shown': 1
         });
 
-        // Listen for checkbox change inside the popup
+// Listen for checkbox change inside the popup
         document.getElementById("acceptTerms").addEventListener("change", function() {
             window.dataLayer.push({
-                'event': 'TermAccept_Checked',
-                'checkbox_checked': this.checked ? 1 : 0
+                'event': 'checkbox_tick', // Changed event name for consistency
+                'checkbox_status': this.checked ? 1 : 0 // Changed variable name
             });
         });
 

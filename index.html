@@ -245,32 +245,30 @@ document.getElementById("clickMeSubmit").addEventListener("click", function () {
             document.getElementById("overlay").style.display = "none";
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+       document.addEventListener("DOMContentLoaded", function() {
         // Confirm Button Click Event
         document.getElementById("confirmBtn").addEventListener("click", function() {
-            document.getElementById("testForm").style.display = "block"; // Show the form
+            document.getElementById("testForm").style.display = "block";
             window.dataLayer.push({'event': 'confirm_button_clicked'});
         });
 
         // Form Submission
         document.getElementById("testForm").addEventListener("submit", function(event) {
-    if (!this.checkValidity()) {
-        // Form is invalid, prevent submission and show error messages
-        event.preventDefault();
-        this.reportValidity(); // Show browser's built-in error messages
-    } else {
-        // Form is valid, proceed with submission
-        event.preventDefault();
-        window.dataLayer.push({
-            'event': 'Confirm-Submit',
-            'form_data': {
-                'name': document.getElementById("name").value,
-                'email': document.getElementById("email").value
+            if (!this.checkValidity()) {
+                event.preventDefault();
+                this.reportValidity();
+            } else {
+                event.preventDefault();
+                window.dataLayer.push({
+                    'event': 'Confirm-Submit',
+                    'form_data': {
+                        'name': document.getElementById("name").value,
+                        'email': document.getElementById("email").value
+                    }
+                });
+                alert("Form Submitted! Check GTM Data Layer.");
             }
         });
-        alert("Form Submitted! Check GTM Data Layer.");
-    }
-});
 
         // Page View Tracking
         window.dataLayer.push({
@@ -287,7 +285,6 @@ document.getElementById("clickMeSubmit").addEventListener("click", function () {
                     'button_class': 'submit-button'
                 });
 
-                // If the button is inside the form, handle form submission
                 if (button.closest('#testForm')) {
                     event.preventDefault();
                     window.dataLayer.push({
@@ -300,14 +297,12 @@ document.getElementById("clickMeSubmit").addEventListener("click", function () {
                     alert("Form Submitted! Check GTM Data Layer.");
                 }
 
-                // If the button is inside the popup, close the popup.
                 if (button.closest('#detailsPopup')) {
                     document.getElementById("detailsPopup").style.display = "none";
                     document.getElementById("overlay").style.display = "none";
                 }
             });
         });
-    });
 
         // Video Event Tracking
         document.addEventListener('DOMContentLoaded', function() {

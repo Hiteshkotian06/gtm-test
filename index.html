@@ -241,16 +241,23 @@ function getCookie(name) {
 
         // Form Submission
         document.getElementById("testForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            window.dataLayer.push({
-                'event': 'Confirm-Submit',
-                'form_data': {
-                    'name': document.getElementById("name").value,
-                    'email': document.getElementById("email").value
-                }
-            });
-            alert("Form Submitted! Check GTM Data Layer.");
+    if (!this.checkValidity()) {
+        // Form is invalid, prevent submission and show error messages
+        event.preventDefault();
+        this.reportValidity(); // Show browser's built-in error messages
+    } else {
+        // Form is valid, proceed with submission
+        event.preventDefault();
+        window.dataLayer.push({
+            'event': 'Confirm-Submit',
+            'form_data': {
+                'name': document.getElementById("name").value,
+                'email': document.getElementById("email").value
+            }
         });
+        alert("Form Submitted! Check GTM Data Layer.");
+    }
+});
 
         // Page View Tracking
         window.dataLayer.push({

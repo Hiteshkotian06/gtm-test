@@ -58,7 +58,7 @@
      <div class="songs-wrapper">
         <div class="song-container">
         
-        <a href = "song1.html" target="_blank" id="song" class="second_song"><h2>There's Nothing holding me back</h2></a>
+        <a href = "song1.html" target="_blank" id="song" class="first_song"><h2>There's Nothing holding me back</h2></a>
         <pre>
 I wanna follow where she goes
 I think about her and she knows it
@@ -111,7 +111,7 @@ Baby, there's nothing holdin' me back
       
       
       <div class="song-container vertical-line">
-        <a href="song2.html" target="_blank" id="song" class="first_song"><h2>Night We Met</h2></a>
+        <a href="song2.html" target="_blank" id="song" class="second_song"><h2>Night We Met</h2></a>
         <pre>
 I am not the only traveler
 Who has not repaid his debt
@@ -186,7 +186,6 @@ function showPopup() {
         return; // Prevent multiple firings
     }
 
-
     popup.innerHTML = `
         <label for="college">College Name:</label>
         <input type="text" id="college" name="college">
@@ -203,6 +202,11 @@ function showPopup() {
         <br>
         <button onclick="closePopup()" class="submit-button Click_me_submit">Submit</button>
     `;
+
+    // Make the popup and overlay visible
+    popup.style.display = "block";
+    overlay.style.display = "block";
+
         
 
 
@@ -227,6 +231,37 @@ function showPopup() {
     }
 }
 
+            // Add event listener to submit buttons inside the popup
+    const submitButtons = document.querySelectorAll('.submit-button');
+    submitButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            window.dataLayer.push({
+                'event': 'Confirm-Submit',
+                'button_class': 'submit-button' // Add the class to the dataLayer
+            });
+
+            // If the button is inside the form, handle form submission
+            if (button.closest('#testForm')) {
+                event.preventDefault(); // Prevent default form submission
+                window.dataLayer.push({
+                    'event': 'Submission-Popup',
+                    'form_data': {
+                        'name': document.getElementById("name").value,
+                        'email': document.getElementById("email").value
+                    }
+                });
+                alert("Form Submitted! Check GTM Data Layer.");
+            }
+
+            //If the button is inside the popup, close the popup.
+            if(button.closest('#detailsPopup')){
+                document.getElementById("detailsPopup").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+            }
+        });
+    });
+}
+        
         function closePopup(){
     document.getElementById("detailsPopup").style.display = "none";
     document.getElementById("overlay").style.display = "none";

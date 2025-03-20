@@ -256,29 +256,25 @@ function getCookie(name) {
         });
         alert("Form Submitted! Check GTM Data Layer.");
     });
-});
-        // Page View Tracking
-        window.dataLayer.push({
-            'event': 'page_view',
-            'page_title': document.title
-        });
-           
 
-// Form Submission Tracking
-document.addEventListener('DOMContentLoaded', function() {
-    // Select all elements with the class "submit-button"
+    // Page View Tracking
+    window.dataLayer.push({
+        'event': 'page_view',
+        'page_title': document.title
+    });
+
+    // Form Submission Tracking for all submit buttons
     const submitButtons = document.querySelectorAll('.submit-button');
-    // Add click event listener to each button
     submitButtons.forEach(button => {
         button.addEventListener('click', function(event) {
             window.dataLayer.push({
                 'event': 'Confirm-Submit',
-                'button_class': 'submit-button' // Add the class to the dataLayer
+                'button_class': 'submit-button'
             });
 
             // If the button is inside the form, handle form submission
             if (button.closest('#testForm')) {
-                event.preventDefault(); // Prevent default form submission
+                event.preventDefault();
                 window.dataLayer.push({
                     'event': 'Submission-Popup',
                     'form_data': {
@@ -289,20 +285,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert("Form Submitted! Check GTM Data Layer.");
             }
 
-            //If the button is inside the popup, close the popup.
-            if(button.closest('#detailsPopup')){
+            // If the button is inside the popup, close the popup.
+            if (button.closest('#detailsPopup')) {
                 document.getElementById("detailsPopup").style.display = "none";
                 document.getElementById("overlay").style.display = "none";
             }
         });
     });
-});
-
-        // Page View Tracking
-        window.dataLayer.push({
-            'event': 'page_view',
-            'page_title': document.title
-        });
 
         // Video Event Tracking
         document.addEventListener('DOMContentLoaded', function() {

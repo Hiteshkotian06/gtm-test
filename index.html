@@ -191,15 +191,16 @@ console.log("Unique User ID:", userId);
         // A/B Test Logic
        // A/B Test Logic (Moved outside DOMContentLoaded)
     function assignVariation() {
-        let storedVariation = getCookie('abTestVariation');
-        if (!storedVariation) {
-            storedVariation = Math.random() < 0.5 ? '0' : '1';
-            setCookie('abTestVariation', storedVariation, 30);
-        }
-        return storedVariation;
+    let storedVariation = getCookie('abTestVariation');
+    if (!storedVariation) {
+        storedVariation = Math.random() < 0.5 ? '0' : '1';
+        setCookie('abTestVariation', storedVariation, 30);
     }
+    console.log("Assigned A/B Test Variation:", storedVariation); // Debugging
+    return storedVariation;
+}
 
-        const variation = assignVariation(); // Store globally
+const variation = assignVariation(); // Store globally
 
  function showPopup() {
         let popup = document.getElementById("detailsPopup");

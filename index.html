@@ -167,14 +167,15 @@ function getCookie(name) {
         window.dataLayer = window.dataLayer || [];
 
         // A/B Test Logic
-        function assignVariation() {
-  let storedVariation = getCookie('abTestVariation');
-  if (!storedVariation) {
-    storedVariation = Math.random() < 0.5 ? '0' : '1';
-    setCookie('abTestVariation', storedVariation, 30); // Store for 30 days
-  }
-  return storedVariation;
-}
+       // A/B Test Logic (Moved outside DOMContentLoaded)
+    function assignVariation() {
+        let storedVariation = getCookie('abTestVariation');
+        if (!storedVariation) {
+            storedVariation = Math.random() < 0.5 ? '0' : '1';
+            setCookie('abTestVariation', storedVariation, 30);
+        }
+        return storedVariation;
+    }
 
         const variation = assignVariation(); // Store globally
 
@@ -264,11 +265,15 @@ function getCookie(name) {
             }
         });
 
+        document.addEventListener("DOMContentLoaded", function() {
+        // ... (Your DOMContentLoaded event listener) ...
         // Page View Tracking
         window.dataLayer.push({
             'event': 'page_view',
-            'page_title': document.title
+            'page_title': document.title,
+            'ab_variation': variation //added variation to page_view event.
         });
+    });
         
         // Video Event Tracking
         var video = document.getElementById('myVideo');

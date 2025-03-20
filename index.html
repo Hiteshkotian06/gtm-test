@@ -200,26 +200,31 @@ function showPopup() {
             </div>
         ` : ''}
         <br>
-        <button onclick="closePopup()" class="submit-button Click_me_submit">Submit</button>
+        <button id="clickMeSubmit" class="submit-button Click_me_submit">Submit</button>
     `;
 
     // Make the popup and overlay visible
     popup.style.display = "block";
     overlay.style.display = "block";
 
-        
-
-
-
-         // ABTesting Tracking
-
+    // Track the event when the popup opens
     let termShownValue = variation === '1' ? 1 : 0;
     window.dataLayer.push({ 
         'event': 'Term_shown', 
         'term_shown': termShownValue 
     });
 
-                
+    // Add event listener to dynamically inserted button
+    document.getElementById("clickMeSubmit").addEventListener("click", function () {
+        window.dataLayer.push({
+            'event': 'ClickMe_Submit',
+            'button_class': 'Click_me_submit'
+        });
+
+        // Close popup after submitting
+        closePopup();
+    });
+
     if (termShownValue === 1) {
         const acceptTermsCheckbox = document.getElementById('acceptTerms');
         acceptTermsCheckbox.addEventListener("change", function() {
@@ -230,6 +235,7 @@ function showPopup() {
         });
     }
 }
+
 
             // Add event listener to submit buttons inside the popup
     const submitButtons = document.querySelectorAll('.submit-button');

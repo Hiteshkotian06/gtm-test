@@ -205,7 +205,8 @@ function getCookie(name) {
         // Fire GTM event when popup appears
         window.dataLayer.push({
             'event': 'Term_shown',
-            'term_shown': 1
+            'term_shown': 1,
+            'ab_variation': variation // Added ab_variation here
         });
 
         // Listen for checkbox change inside the popup
@@ -271,8 +272,7 @@ function getCookie(name) {
         window.dataLayer.push({
             'event': 'page_view',
             'page_title': document.title,
-            'ab_variation': variation //added variation to page_view event.
-        });
+            
     });
         
         // Video Event Tracking

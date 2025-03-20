@@ -250,8 +250,9 @@ function getCookie(name) {
     }
 
     function closePopup() {
-        document.getElementById("detailsPopup").style.display = "none";
-        document.getElementById("overlay").style.display = "none";
+            document.getElementById("detailsPopup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -285,25 +286,37 @@ function getCookie(name) {
             'page_title': document.title
         });
 
-        // Form Submission Tracking for all submit buttons (outside popup)
+        // Form Submission Tracking for all submit buttons
         const submitButtons = document.querySelectorAll('.submit-button');
         submitButtons.forEach(button => {
             button.addEventListener('click', function(event) {
                 window.dataLayer.push({
-                    'event': 'Confirm-Submit',
-                    'button_class': 'submit-button'
+                    'event': 'Submit',
+                    'button_class': button.className
                 });
 
                 if (button.closest('#testForm')) {
                     event.preventDefault();
                     window.dataLayer.push({
-                        'event': 'Submission-Popup',
+                        'event': 'Confirm-Submit',
                         'form_data': {
                             'name': document.getElementById("name").value,
                             'email': document.getElementById("email").value
                         }
                     });
                     alert("Form Submitted! Check GTM Data Layer.");
+                } else if (button.closest('#detailsPopup')) {
+                    const college = document.getElementById("college").value;
+                    const qualification = document.getElementById("qualification").value;
+
+                    window.dataLayer.push({
+                        'event': 'Popup-Submit',
+                        'form_data': {
+                            'college': college,
+                            'qualification': qualification
+                        }
+                    });
+                    closePopup();
                 }
             });
         });

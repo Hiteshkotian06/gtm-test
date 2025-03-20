@@ -184,10 +184,10 @@ function getCookie(name) {
 
             popup.innerHTML = `
                 <label for="college">College Name:</label>
-                <input type="text" id="college" name="college">
+                <input type="text" id="college" name="college" required>
                 <br><br>
                 <label for="qualification">Highest Qualification:</label>
-                <input type="text" id="qualification" name="qualification">
+                <input type="text" id="qualification" name="qualification" required>
                 <br><br>
                 <div class="accept-terms flex-row">
                     <input type="checkbox" id="acceptTerms" name="acceptTerms">
@@ -216,15 +216,28 @@ function getCookie(name) {
             });
 
             // Listen for submit button click inside the popup
-            document.getElementById("clickMeSubmit").addEventListener("click", function () {
-                window.dataLayer.push({
-                    'event': 'ClickMe_Submit',
-                    'button_class': 'Click_me_submit'
-                });
+document.getElementById("clickMeSubmit").addEventListener("click", function () {
+    const collegeInput = document.getElementById("college");
+    const qualificationInput = document.getElementById("qualification");
 
-                closePopup();
-            });
-        }
+    if (!collegeInput.value || !qualificationInput.value) { //check for empty values
+        alert("Please fill in all required fields.");
+        return; //stop submission
+    }
+
+    if (!document.getElementById("college").value || !document.getElementById("qualification").value) {
+        // Form is invalid, prevent submission and show error messages
+        alert("Please fill in all required fields.");
+        return;
+    } else {
+        // Form is valid, proceed with submission
+        window.dataLayer.push({
+            'event': 'ClickMe_Submit',
+            'button_class': 'Click_me_submit'
+        });
+        closePopup();
+    }
+});
 
         // Function to close popup
         function closePopup() {

@@ -198,19 +198,34 @@ function getCookie(name) {
 
          // Assign A/B test variation when the page loads
 document.addEventListener("DOMContentLoaded", function() {
-    // Assign A/B test variation on page load
+    console.log("DOM fully loaded");  // Debugging
+
+    // Assign A/B Test Variation
     const variation = assignVariation();
 
-    // Confirm Button Click Event
-    document.getElementById("confirmBtn").addEventListener("click", function() {
-        document.getElementById("testForm").style.display = "block";
-        window.dataLayer.push({'event': 'confirm_button_clicked'});
-    });
+    // Ensure confirm button exists before adding event listener
+    let confirmBtn = document.getElementById("confirmBtn");
+    if (confirmBtn) {
+        confirmBtn.addEventListener("click", function() {
+            console.log("Confirm button clicked"); // Debugging
+            document.getElementById("testForm").style.display = "block";
+            window.dataLayer.push({'event': 'confirm_button_clicked'});
+        });
+    } else {
+        console.error("Confirm button not found!");
+    }
 
-    // Click Me Button Event
-    document.getElementById("clickMeBtn").addEventListener("click", function() {
-        showPopup();
-    });
+    // Ensure click me button exists before adding event listener
+    let clickMeBtn = document.getElementById("clickMeBtn");
+    if (clickMeBtn) {
+        clickMeBtn.addEventListener("click", function() {
+            console.log("Click Me button clicked"); // Debugging
+            showPopup();
+        });
+    } else {
+        console.error("Click Me button not found!");
+    }
+});
 
     // Form Submission
     document.getElementById("testForm").addEventListener("submit", function(event) {

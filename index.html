@@ -143,6 +143,18 @@ Take me back to the night we met
 
     <script>
 
+                // A/B Test Logic
+    function assignVariation() {
+    let storedVariation = getCookie('abTestVariation');
+    if (!storedVariation) {
+        storedVariation = Math.random() < 0.5 ? '0' : '1';
+        setCookie('abTestVariation', storedVariation, 30);
+    }
+    console.log("Assigned A/B Test Variation:", storedVariation); // Debugging
+    return storedVariation;
+}
+
+
         function getOrCreateUniqueId() {
     let uniqueId = getCookie("uniqueUserId");
 
@@ -178,28 +190,50 @@ function getCookie(name) {
     return null;
 }
 
-// Get the unique ID
-let userId = getOrCreateUniqueId();
-console.log("Unique User ID:", userId);
+    // Get the unique ID
+    let userId = getOrCreateUniqueId();
+    console.log("Unique User ID:", userId);
 
-// You can now use the 'userId' variable for tracking purposes
-
-        
-        
         window.dataLayer = window.dataLayer || [];
 
-        // A/B Test Logic
-       // A/B Test Logic (Moved outside DOMContentLoaded)
-    function assignVariation() {
-    let storedVariation = getCookie('abTestVariation');
-    if (!storedVariation) {
-        storedVariation = Math.random() < 0.5 ? '0' : '1';
-        setCookie('abTestVariation', storedVariation, 30);
-    }
-    console.log("Assigned A/B Test Variation:", storedVariation); // Debugging
-    return storedVariation;
-}
+         // Assign A/B test variation when the page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            const variation = assignVariation();  // Assign variation on page load
+            
+            // Click Me Button Event
+            document.getElementById("clickMeBtn").addEventListener("click", function() {
+                showPopup(variation);  // Pass variation to showPopup
+            });
 
+            // Confirm Button Click Event
+            document.getElementById("confirmBtn").addEventListener("click", function() {
+                document.getElementById("testForm").style.display = "block";
+                window.dataLayer.push({'event': 'confirm_button_clicked'});
+            });
+        // Form Submission
+            document.getElementById("testForm").addEventListener("submit", function(event) {
+                if (!this.checkValidity()) {
+                    event.preventDefault();
+                    this.reportValidity();
+                } else {
+                    event.preventDefault();
+                    window.dataLayer.push({
+                        'event': 'Confirm-Submit',
+                        'form_data': {
+                            'name': document.getElementById("name").value,
+                            'email': document.getElementById("email").value
+                        }
+                    });
+                    alert("Form Submitted! Check GTM Data Layer.");
+                }
+            });
+
+            // Page View Tracking
+            window.dataLayer.push({
+                'event': 'page_view',
+                'page_title': document.title,
+            });
+        });
 
 
  function showPopup() {
@@ -231,27 +265,27 @@ console.log("Unique User ID:", userId);
     });
 
     if (variation === '1') {
-        window.dataLayer.push({
-            'event': 'checkbox_initial_status',
-            'checkbox_status': 1
-        });
+                window.dataLayer.push({
+                    'event': 'checkbox_initial_status',
+                    'checkbox_status': 1
+                });
 
-        document.getElementById("acceptTerms").addEventListener("change", function() {
-            window.dataLayer.push({
-                'event': 'checkbox_tick',
-                'checkbox_status': this.checked ? 1 : 0
-            });
-        });
-    }
+                document.getElementById("acceptTerms").addEventListener("change", function() {
+                    window.dataLayer.push({
+                        'event': 'checkbox_tick',
+                        'checkbox_status': this.checked ? 1 : 0
+                    });
+                });
+            }
 
-    document.getElementById("popupFormSubmit").addEventListener("click", function() {
-        const collegeInput = document.getElementById("college");
-        const qualificationInput = document.getElementById("qualification");
+    // document.getElementById("popupFormSubmit").addEventListener("click", function() {
+    //     const collegeInput = document.getElementById("college");
+    //     const qualificationInput = document.getElementById("qualification");
 
-        if (!collegeInput.value || !qualificationInput.value) {
-            alert("Please fill in all required fields.");
-            return;
-        }
+    //     if (!collegeInput.value || !qualificationInput.value) {
+    //         alert("Please fill in all required fields.");
+    //         return;
+    //     }
 
         window.dataLayer.push({
             'event': 'ClickMe_Submit',
@@ -273,30 +307,7 @@ console.log("Unique User ID:", userId);
         }
     }
 
-  document.addEventListener("DOMContentLoaded", function() {
-    // Confirm Button Click Event
-    document.getElementById("confirmBtn").addEventListener("click", function() {
-        document.getElementById("testForm").style.display = "block";
-        window.dataLayer.push({'event': 'confirm_button_clicked'});
-    });
-
-    // Form Submission
-    document.getElementById("testForm").addEventListener("submit", function(event) {
-        if (!this.checkValidity()) {
-            event.preventDefault();
-            this.reportValidity();
-        } else {
-            event.preventDefault();
-            window.dataLayer.push({
-                'event': 'Confirm-Submit',
-                'form_data': {
-                    'name': document.getElementById("name").value,
-                    'email': document.getElementById("email").value
-                }
-            });
-            alert("Form Submitted! Check GTM Data Layer.");
-        }
-    });
+    
 
     // Click Me Button Event
     document.querySelectorAll(".green-button")[1].addEventListener("click", showPopup); //Move inside

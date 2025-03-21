@@ -143,7 +143,7 @@ Take me back to the night we met
 
     <script>
 
-                // A/B Test Logic
+    // A/B Test Logic
     function assignVariation() {
     let storedVariation = getCookie('abTestVariation');
     if (!storedVariation) {
@@ -152,12 +152,11 @@ Take me back to the night we met
     }
     console.log("Assigned A/B Test Variation:", storedVariation); // Debugging
     return storedVariation;
-}
+    }
 
 
-        function getOrCreateUniqueId() {
+    function getOrCreateUniqueId() {
     let uniqueId = getCookie("uniqueUserId");
-
     if (!uniqueId) {
         // Generate a UUID (Universally Unique Identifier)
         uniqueId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -167,9 +166,9 @@ Take me back to the night we met
         setCookie("uniqueUserId", uniqueId, 365); // Set cookie for 365 days
     }
     return uniqueId;
-}
+    }
 
-function setCookie(name, value, days) {
+    function setCookie(name, value, days) {
     let expires = "";
     if (days) {
         let date = new Date();
@@ -177,9 +176,9 @@ function setCookie(name, value, days) {
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
+    }
 
-function getCookie(name) {
+    function getCookie(name) {
     let nameEQ = name + "=";
     let ca = document.cookie.split(';');
     for(let i = 0; i < ca.length; i++) {
@@ -188,44 +187,43 @@ function getCookie(name) {
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
-}
+    }
 
     // Get the unique ID
     let userId = getOrCreateUniqueId();
     console.log("Unique User ID:", userId);
 
-        window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-// Assign A/B test variation when the page loads
-        document.addEventListener("DOMContentLoaded", function() {
-            console.log("DOM fully loaded"); // Debugging
+    // Assign A/B test variation when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("DOM fully loaded"); // Debugging
 
-            // Assign A/B Test Variation
-            const variation = assignVariation();
+        // Assign A/B Test Variation
+        const variation = assignVariation();
 
-            // Ensure confirm button exists before adding event listener
-            let confirmBtn = document.getElementById("confirmBtn");
-            if (confirmBtn) {
-                confirmBtn.addEventListener("click", function() {
-                    console.log("Confirm button clicked"); // Debugging
-                    document.getElementById("testForm").style.display = "block";
-                    window.dataLayer.push({ 'event': 'confirm_button_clicked' });
-                });
+        // Ensure confirm button exists before adding event listener
+        let confirmBtn = document.getElementById("confirmBtn");
+        if (confirmBtn) {
+            confirmBtn.addEventListener("click", function() {
+                console.log("Confirm button clicked");
+                document.getElementById("testForm").style.display = "block";
+                window.dataLayer.push({ 'event': 'confirm_button_clicked' });
+            });
             } else {
                 console.error("Confirm button not found!");
             }
 
             // Ensure click me button exists before adding event listener
             let clickMeBtn = document.getElementById("clickMeBtn");
-            if (clickMeBtn) {
-                clickMeBtn.addEventListener("click", function() {
-                    console.log("Click Me button clicked"); // Debugging
-                    showPopup();
-                });
-            } else {
-                console.error("Click Me button not found!");
-            }
-        });
+        if (clickMeBtn) {
+            clickMeBtn.addEventListener("click", function() {
+                console.log("Click Me button clicked");
+                showPopup();
+            });
+        } else {
+            console.error("Click Me button not found!");
+        }
 
         // Form Submission
         document.getElementById("testForm").addEventListener("submit", function(event) {
@@ -251,11 +249,15 @@ function getCookie(name) {
             'page_title': document.title,
         });
 
-        function showPopup() {
+       function showPopup() {
             let popup = document.getElementById("detailsPopup");
             let overlay = document.getElementById("overlay");
             const variation = assignVariation();
 
+            // ... (your popup content and logic)
+            popup.style.display = "block";
+            overlay.style.display = "block";
+           
             popup.innerHTML = `
                 <label for="college">College Name:</label>
                 <input type="text" id="college" name="college" required>

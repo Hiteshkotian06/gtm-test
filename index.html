@@ -203,71 +203,68 @@ console.log("Unique User ID:", userId);
 
 
  function showPopup() {
-        let popup = document.getElementById("detailsPopup");
-        let overlay = document.getElementById("overlay");
+    let popup = document.getElementById("detailsPopup");
+    let overlay = document.getElementById("overlay");
+    const variation = assignVariation(); // Assign variation here
 
-        popup.innerHTML = `
-            <label for="college">College Name:</label>
-            <input type="text" id="college" name="college" required>
-            <br><br>
-            <label for="qualification">Highest Qualification:</label>
-            <input type="text" id="qualification" name="qualification" required>
-            <br><br>
-            <div class="accept-terms flex-row">
-                <input type="checkbox" id="acceptTerms" name="acceptTerms">
-                <label for="acceptTerms">We accept</label>
-            </div>
-            <br>
-            <button id="popupFormSubmit" class="Click_me_submit">Submit</button>
-        `;
+    popup.innerHTML = `
+        <label for="college">College Name:</label>
+        <input type="text" id="college" name="college" required>
+        <br><br>
+        <label for="qualification">Highest Qualification:</label>
+        <input type="text" id="qualification" name="qualification" required>
+        <br><br>
+        ${variation === '1' ? `<div class="accept-terms flex-row">
+            <input type="checkbox" id="acceptTerms" name="acceptTerms" checked>
+            <label for="acceptTerms">We accept</label>
+        </div>` : ''}
+        <br>
+        <button id="popupFormSubmit" class="Click_me_submit">Submit</button>
+    `;
 
-        // Show popup
-        popup.style.display = "block";
-        overlay.style.display = "block";
+    popup.style.display = "block";
+    overlay.style.display = "block";
 
-        // Fire GTM event when popup appears
-        window.dataLayer.push({
-            'event': 'Term_shown',
-            'term_shown': 1
-        });
-
-     // Set initial checkbox state based on variation
-           if (variation === '1') {
-                window.dataLayer.push({
-                    'event': 'checkbox_initial_status',
-                    'checkbox_status': 1
-                });
-     
-     // Fire GTM event for initial checkbox status
     window.dataLayer.push({
-        'event': 'checkbox_initial_status',
-        'checkbox_status': document.getElementById("acceptTerms").checked ? 1 : 0
+        'event': 'Term_shown',
+        'term_shown': 1
     });
 
-// Listen for checkbox change inside the popup
+    if (variation === '1') {
+        window.dataLayer.push({
+            'event': 'checkbox_initial_status',
+            'checkbox_status': 1
+        });
+
         document.getElementById("acceptTerms").addEventListener("change", function() {
             window.dataLayer.push({
-                'event': 'checkbox_tick', // Changed event name for consistency
-                'checkbox_status': this.checked ? 1 : 0 // Changed variable name
+                'event': 'checkbox_tick',
+                'checkbox_status': this.checked ? 1 : 0
             });
         });
+    }
 
-        // Listen for submit button click inside the popup
-        document.getElementById("popupFormSubmit").addEventListener("click", function() { // Corrected line
-            const collegeInput = document.getElementById("college");
-            const qualificationInput = document.getElementById("qualification");
+    document.getElementById("popupFormSubmit").addEventListener("click", function() {
+        const collegeInput = document.getElementById("college");
+        const qualificationInput = document.getElementById("qualification");
 
-            if (!collegeInput.value || !qualificationInput.value) {
-                alert("Please fill in all required fields.");
-                return;
-            }
+        if (!collegeInput.value || !qualificationInput.value) {
+            alert("Please fill in all required fields.");
+            return;
+        }
 
-            window.dataLayer.push({
-                'event': 'ClickMe_Submit',
-                'button_class': 'Click_me_submit'
-            });
-            closePopup();
+        window.dataLayer.push({
+            'event': 'ClickMe_Submit',
+            'button_class': 'Click_me_submit'
         });
+        closePopup();
+    });
+
+    function closePopup() {
+        document.getElementById("detailsPopup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    }
+}
 
         // Function to close popup
         function closePopup() {

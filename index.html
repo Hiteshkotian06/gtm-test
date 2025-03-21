@@ -200,7 +200,7 @@ console.log("Unique User ID:", userId);
     return storedVariation;
 }
 
-const variation = assignVariation(); // Store globally
+
 
  function showPopup() {
         let popup = document.getElementById("detailsPopup");
@@ -232,12 +232,11 @@ const variation = assignVariation(); // Store globally
         });
 
      // Set initial checkbox state based on variation
-            const variation = assignVariation();
-            if (variation === '1') {
-                document.getElementById("acceptTerms").checked = true;
-            } else {
-                document.getElementById("acceptTerms").checked = false;
-            }
+           if (variation === '1') {
+                window.dataLayer.push({
+                    'event': 'checkbox_initial_status',
+                    'checkbox_status': 1
+                });
      
      // Fire GTM event for initial checkbox status
     window.dataLayer.push({

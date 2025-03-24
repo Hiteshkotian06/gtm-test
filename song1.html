@@ -79,18 +79,5 @@ Baby, there's nothing holdin' me back
         link.href = updateURL(link.href, userId);
     });
 });
-    <script>
-
-function updateURL(url, userId) {
-    try {
-        let newUrl = new URL(url, window.location.origin);
-        newUrl.searchParams.set("uniqueUserId", userId);
-        return newUrl.toString();
-    } catch (e) {
-        console.error("Invalid URL:", url);
-        return url;
-    }
-}
-</script>
 </body>
 </html>

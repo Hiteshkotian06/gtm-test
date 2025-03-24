@@ -163,7 +163,7 @@ Take me back to the night we met
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
-        setCookie("uniqueUserId", uniqueId, 365); // Set cookie for 365 days
+        setCookie("uniqueUserId", uniqueId, 1); // Set cookie for 365 days
     }
     return uniqueId;
     }

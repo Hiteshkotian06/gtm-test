@@ -156,14 +156,14 @@ Take me back to the night we met
 
 
     function getOrCreateUniqueId() {
-    let uniqueId = getCookie("uniqueUserId");
+    let uniqueId = sessionStorage.getItem("uniqueUserId");
     if (!uniqueId) {
         // Generate a UUID (Universally Unique Identifier)
         uniqueId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
-        setCookie("uniqueUserId", uniqueId, 1); // Set cookie for 365 days
+        sessionStorage.setItem("uniqueUserId", uniqueId); // Set cookie for 365 days
     }
     return uniqueId;
     }

@@ -155,44 +155,35 @@ Take me back to the night we met
     }
 
 
-    function getOrCreateUniqueId() {
-    let uniqueId = sessionStorage.getItem("uniqueUserId");
-    if (!uniqueId) {
-        // Generate a UUID (Universally Unique Identifier)
-        uniqueId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-        sessionStorage.setItem("uniqueUserId", uniqueId); // Set cookie for 365 days
-    }
-    return uniqueId;
-    }
-    
+function generateUniqueUserId() {
+    // Generate a random UUID (Version 4)
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0,
+          v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 
-    function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        let date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+  function getOrCreateUniqueUserId() {
+    let uniqueUserId = sessionStorage.getItem('uniqueUserId');
+
+    if (!uniqueUserId) {
+      uniqueUserId = generateUniqueUserId();
+      sessionStorage.setItem('uniqueUserId', uniqueUserId);
     }
 
-    function getCookie(name) {
-    let nameEQ = name + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-    }
+    return uniqueUserId;
+  }
 
-    // Get the unique ID
-    let userId = getOrCreateUniqueId();
-    console.log("Unique User ID:", userId);
+  // Get or create the unique user ID and log it (for testing)
+  const userId = getOrCreateUniqueUserId();
+  console.log('Unique User ID:', userId);
+
+  // You can push this userId to the dataLayer if needed for GTM.
+  dataLayer.push({
+     'event': 'uniqueUserIdGenerated',
+     'uniqueUserId': userId
+   });
 
     window.dataLayer = window.dataLayer || [];
 
